@@ -9,15 +9,15 @@ public class GameController : MonoBehaviour {
 	private float movementHorizontal;
 	// Use this for initialization
 	void Start () {
-		
+		myGazeGetter = FindObjectOfType<Gaze>();
+		ballController = FindObjectOfType<BallController>();
 		//every 20th of a second
 		InvokeRepeating("BallMover", 0,  0.05f);
 	}
 	
 	public void BallMover() 
 	{
-		myGazeGetter = FindObjectOfType<Gaze>();
-		ballController = FindObjectOfType<BallController>();
+	
 		Debug.Log("Head tilt value: " + myGazeGetter.gazeDataObject.head);
 		// Debug.Log("Tilting left: " + myGazeGetter.IsTiltingLeft() + "\nTilting Right: " + myGazeGetter.IsTiltingRight());
 		movementHorizontal = 0;

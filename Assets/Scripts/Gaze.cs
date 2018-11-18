@@ -8,8 +8,8 @@ using System.Threading;
 public class Gaze : MonoBehaviour
 {
     private float tiltThreshold = 0.1f;
-    private BallController ballController;
-    private float movementHorizontal;
+    // private BallController ballController;
+    // private float movementHorizontal;
     public GazeData gazeDataObject = new GazeData();
     void Start()
     {
@@ -50,20 +50,20 @@ public class Gaze : MonoBehaviour
                     // textX.text = gazeDataObject.ToString();
                     
                     
-                    ballController = FindObjectOfType<BallController>();
-                    Debug.Log("Head tilt value: " + gazeDataObject.head);
-                    // Debug.Log("Tilting left: " + myGazeGetter.IsTiltingLeft() + "\nTilting Right: " + myGazeGetter.IsTiltingRight());
-                    movementHorizontal = 0;
-                    if(IsTiltingLeft()) 
-                    {
-                        // Debug.Log("left");
-                        movementHorizontal = -1;
-                    } else if(IsTiltingRight()) 
-                    {
-                        // Debug.Log("right");
-                        movementHorizontal = 1;
-                    }
-                    ballController.MoveBasedOnHead(movementHorizontal);
+                    // ballController = FindObjectOfType<BallController>();
+                    // Debug.Log("Head tilt value: " + gazeDataObject.head);
+                    // // Debug.Log("Tilting left: " + myGazeGetter.IsTiltingLeft() + "\nTilting Right: " + myGazeGetter.IsTiltingRight());
+                    // movementHorizontal = 0;
+                    // if(IsTiltingLeft()) 
+                    // {
+                    //     // Debug.Log("left");
+                    //     movementHorizontal = -1;
+                    // } else if(IsTiltingRight()) 
+                    // {
+                    //     // Debug.Log("right");
+                    //     movementHorizontal = 1;
+                    // }
+                    // ballController.MoveBasedOnHead(movementHorizontal);
                 }
             }
         }
