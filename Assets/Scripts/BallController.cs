@@ -6,7 +6,7 @@ public class BallController : MonoBehaviour {
 
 	private Rigidbody2D rb;
 	public float speed = 10;
-
+	public Vector3 playerMovement;
     // Vector3 movement;
 	// Gaze gaze;
 
@@ -15,12 +15,24 @@ public class BallController : MonoBehaviour {
 		// gaze = FindObjectOfType<Gaze>();
 	}
 
-	public void MoveBasedOnHead(float h)
+	public void MoveBasedOnHeadBinary(float h)
 	{
 		Vector3 direction = new Vector3(h, 0f, 0f);
 		rb.AddForce(direction * speed);
 	}
 
+	public void MoveBasedOnHeadRange(float h)
+	{
+		// uses direct translation of head tilt, and * by 1000 to move rb
+		if(h > 0.1f || h < -0.1f) {
+			playerMovement  = new Vector3(-h, 0.0f, 0.0f) * speed * Time.deltaTime;
+		} else {
+			playerMovement = new Vector3(0f,0f,0f) * speed * Time.deltaTime;
+		}
+
+		//rb = RigidBody2D
+		rb.MovePosition(playerMovement * 1000f);
+	}
 
 
 	// Update is called once per frame
