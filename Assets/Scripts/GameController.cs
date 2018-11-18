@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	private BallController ballController;
 	private float movementHorizontal;
 	public int configuration = 0;
+	public GameObject prefab;
 	// Use this for initialization
 	void Start () {
 		myGazeGetter = FindObjectOfType<Gaze>();
@@ -16,16 +17,18 @@ public class GameController : MonoBehaviour {
 		switch(configuration)
 		{
 			case 0: 
-			InvokeRepeating("BallMoverBinary", 0,  0.05f);
+			InvokeRepeating("BallMoverBinary", 0,  0.0125f);
 			break;
 			case 1:
-			InvokeRepeating("BallMoverRange", 0,  0.05f);
+			InvokeRepeating("BallMoverRange", 0,  0.0125f);
 			break;
 			default:
-			InvokeRepeating("BallMoverBinary", 0,  0.05f);
+			InvokeRepeating("BallMoverBinary", 0,  0.0125f);
 			break;
 
 		}
+
+		InvokeRepeating("BlockSpawner", 0, 2);
 	}
 	
 	public void BallMoverBinary() 
@@ -49,7 +52,14 @@ public class GameController : MonoBehaviour {
 
 	public void BallMoverRange()
 	{
+		// Debug.Log("Head tilt value: " + myGazeGetter.gazeDataObject.head);
 		movementHorizontal = myGazeGetter.GetHeadTiltValue();
 		ballController.MoveBasedOnHeadRange(movementHorizontal);
+	}
+
+	public void BlockSpawner()
+	{
+		Vector3 position = new Vector3(Random.Range(-80.0f, 80.0f), 60, 0);
+        Instantiate(prefab, position, Quaternion.identity);
 	}
 }
