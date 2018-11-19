@@ -9,7 +9,7 @@ public class BallController : MonoBehaviour {
 	public Vector3 playerMovement;
 
 
-	void Start () {
+	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
 	}
 
@@ -24,13 +24,29 @@ public class BallController : MonoBehaviour {
 		// uses direct translation of head tilt, and * by 1000 to move rb
 		if(h > 0.05f || h < -0.05f) {
 			playerMovement  = new Vector3(-h, 0.0f, 0.0f) * speed * Time.deltaTime;
+			Teleport(h);
 		} else {
 			playerMovement = new Vector3(0f,0f,0f) * speed * Time.deltaTime;
 		}
 
-		rb.MovePosition(playerMovement * 1000f);
-		// transform.Translate((target.position - transform.position) * Time.deltaTime * speed);
 
+		//rb.MovePosition(playerMovement * 1000f);
+		// transform.Translate((target.position - transform.position) * Time.deltaTime * speed);
+	}
+	
+	private void Teleport(float x)
+	{
+		x = -x * 100;
+		print("x = " + x);
+		float y = transform.position.y;
+		float z = transform.position.z;
+		float oldX = transform.position.x;
+
+		x = Mathf.Lerp(oldX, x, 0.1f);
+		
+		Vector3 newPos = new Vector3(x, y, z);
+
+		transform.position = newPos;
 	}
 
 

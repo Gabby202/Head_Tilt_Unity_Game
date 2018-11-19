@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour {
 
 	public void BallMoverRange()
 	{
-		// Debug.Log("Head tilt value: " + myGazeGetter.gazeDataObject.head);
+		Debug.Log("Head tilt value: " + myGazeGetter.gazeDataObject);
 		movementHorizontal = myGazeGetter.GetHeadTiltValue();
 		ballController.MoveBasedOnHeadRange(movementHorizontal);
 	}

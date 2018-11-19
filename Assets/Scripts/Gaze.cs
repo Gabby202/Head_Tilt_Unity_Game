@@ -45,7 +45,7 @@ public class Gaze : MonoBehaviour
                     if(null != gazeDataObject2){
                         gazeDataObject = gazeDataObject2;
                     }
-                    // Debug.Log("head: " + GetHeadTiltValue());
+                     //Debug.Log("head: " + GetHeadTiltValue());
                     // Debug.Log(Time.time + ", " + gazeDataObject);
                     // textX.text = gazeDataObject.ToString();
                     
