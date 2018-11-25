@@ -28,7 +28,6 @@ public class GameController : MonoBehaviour {
 
 		}
 
-		InvokeRepeating("BlockSpawner", 0, 2);
 	}
 	
 	public void BallMoverBinary() 
@@ -52,14 +51,10 @@ public class GameController : MonoBehaviour {
 
 	public void BallMoverRange()
 	{
-		Debug.Log("Head tilt value: " + myGazeGetter.gazeDataObject);
+		//Debug.Log("Head tilt value: " + myGazeGetter.gazeDataObject);
 		movementHorizontal = myGazeGetter.GetHeadTiltValue();
 		ballController.MoveBasedOnHeadRange(movementHorizontal);
 	}
 
-	public void BlockSpawner()
-	{
-		Vector3 position = new Vector3(Random.Range(-80.0f, 80.0f), 60, 0);
-        Instantiate(prefab, position, Quaternion.identity);
-	}
+
 }

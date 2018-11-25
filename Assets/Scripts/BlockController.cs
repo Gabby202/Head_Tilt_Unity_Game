@@ -5,22 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class BlockController : MonoBehaviour {
 
+    public GameObject prefab;
+
 	// Use this for initialization
 	void Start () {
+        InvokeRepeating("BlockSpawner", 0, 2);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
-	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.tag == "Player") {
-			SceneManager.LoadScene("GameOver");
-		}
-		if (other.gameObject.tag == "Bound") {
-			Destroy(gameObject);
-		}
-	}
+
+
+    public void BlockSpawner()
+    {
+        Vector3 position = new Vector3(Random.Range(-80.0f, 80.0f), 60, 0);
+        Instantiate(prefab, position, Quaternion.identity);
+    }
 }

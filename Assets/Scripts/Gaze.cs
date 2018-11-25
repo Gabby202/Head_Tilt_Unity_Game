@@ -28,7 +28,7 @@ public class Gaze : MonoBehaviour
 
                 if (www.isNetworkError || www.isHttpError)
                 {
-                    Debug.Log(www.error);
+                    //Debug.Log(www.error);
                 }
                 else
                 {
