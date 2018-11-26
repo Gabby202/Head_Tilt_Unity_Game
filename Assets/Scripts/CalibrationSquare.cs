@@ -13,9 +13,8 @@ public class CalibrationSquare : MonoBehaviour{
     {
         calibrationController = FindObjectOfType<CalibrationController>();
         lifespan = 3f;
-        allowanceModifier = calibrationController.timer * 0.3f;
+        allowanceModifier = calibrationController.timer * 1f;
         accuracyRatio = 0f;
-
         accuracyRatio = (calibrationController.timer + allowanceModifier) / lifespan;
         accuracyRatio /= 100;
     }
