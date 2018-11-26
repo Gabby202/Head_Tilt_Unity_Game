@@ -5,18 +5,15 @@ using UnityEngine;
 public class CalibrationSquare : MonoBehaviour{
 
     float currCountdownValue;
-    private float accuracyRatio;
-    private float allowanceModifier;
     private CalibrationController calibrationController;
+    private AccuracyCalculator accuracyCalculator;
     private float lifespan = 0f;
     void Start()
     {
         calibrationController = FindObjectOfType<CalibrationController>();
         lifespan = 3f;
-        allowanceModifier = calibrationController.timer * 1f;
-        accuracyRatio = 0f;
-        accuracyRatio = (calibrationController.timer + allowanceModifier) / lifespan;
-        accuracyRatio /= 100;
+        accuracyCalculator = new AccuracyCalculator(lifespan, calibrationController.timer);
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -49,7 +46,7 @@ public class CalibrationSquare : MonoBehaviour{
             currCountdownValue--;
             calibrationController.slider.value += 1 / lifespan;
             //Debug.Log(calibrationController.slider.value);
-            calibrationController.accuracy += Mathf.Ceil(accuracyRatio * lifespan * 10);
+            calibrationController.accuracy += accuracyCalculator.Accuracy();
             Debug.Log(calibrationController.accuracy);
             if (currCountdownValue <= 0)
             {
