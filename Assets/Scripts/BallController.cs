@@ -29,12 +29,13 @@ public class BallController : MonoBehaviour {
 			playerMovement = new Vector3(0f,0f,0f) * speed * Time.deltaTime;
 		}
 
+        //print(Screen.width);
 
-		//rb.MovePosition(playerMovement * 1000f);
-		// transform.Translate((target.position - transform.position) * Time.deltaTime * speed);
-	}
-	
-	private void Teleport(float x)
+        //rb.MovePosition(playerMovement * 1000f);
+        // transform.Translate((target.position - transform.position) * Time.deltaTime * speed);
+    }
+
+    private void Teleport(float x)
 	{
         x = -x * 200;
         //print("x = " + x);

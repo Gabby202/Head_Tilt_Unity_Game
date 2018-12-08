@@ -8,7 +8,6 @@ public class GameController : MonoBehaviour {
 	private BallController ballController;
 	private float movementHorizontal;
 	public int configuration = 0;
-	public GameObject prefab;
 	// Use this for initialization
 	void Start () {
 		myGazeGetter = FindObjectOfType<Gaze>();
