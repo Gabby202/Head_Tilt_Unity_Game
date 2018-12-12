@@ -9,8 +9,9 @@ public class CalibrationController : MonoBehaviour {
     public GameObject square;
     public GameObject rect;
     public Text timerText;
-    public float timer = 30f;
-    public float accuracy;
+    public float totalTime = 30f;
+    private float timer = 0f;
+    private float accuracy = 0;
     private GameObject[] rectPositions;
     private float width;
     private float height;
@@ -19,20 +20,30 @@ public class CalibrationController : MonoBehaviour {
     public bool calibrationFinished = false;
     private int counter;
     public Slider slider;
+    public AccuracyCalculator accuracyCalculator;
+    public float lifespan = 0;
+    public float timeInSquare = 0;
 
-	void Start () {
+
+    void Start () {
+        timer = totalTime;
+        timeInSquare = 0;
         accuracy = 0;
         rectPositions = GameObject.FindGameObjectsWithTag("RectPosition");   
         counter = 0;
         position = new Vector3(0, 0, 0);
-	}
-	
-	void Update () {
+
+    }
+
+    void Update () {
 
         timer -= Time.deltaTime;
         timerText.text = timer.ToString();
         if(timer < 0)
         {
+            PlayerPrefs.SetFloat("accuracy", 0f);
+            accuracyCalculator = new AccuracyCalculator(lifespan, totalTime, timeInSquare);
+            accuracy = accuracyCalculator.Accuracy();
             PlayerPrefs.SetFloat("accuracy", accuracy);
             SceneManager.LoadScene("CalibrationOver");
         }
