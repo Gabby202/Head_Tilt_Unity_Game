@@ -19,6 +19,17 @@ public class BallController : MonoBehaviour {
 		rb.AddForce(direction * speed);
 	}
 
+    public void MoveBasedOnKeyboard(float h)
+    {
+        Vector3 direction = new Vector3(h, 0f, 0f);
+        rb.AddForce(direction * speed * 1000);
+    }
+
+    public void StopBall()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
 	public void MoveBasedOnHeadRange(float h)
 	{
 		// uses direct translation of head tilt, and * by 1000 to move rb

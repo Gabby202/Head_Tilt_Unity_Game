@@ -7,29 +7,35 @@ public class GameController : MonoBehaviour {
 	private Gaze myGazeGetter;
 	private BallController ballController;
 	private float movementHorizontal;
-	public int configuration = 0;
+	public int configuration = 2;
 	public GameObject prefab;
 	// Use this for initialization
 	void Start () {
 		myGazeGetter = FindObjectOfType<Gaze>();
 		ballController = FindObjectOfType<BallController>();
-		//every 20th of a second
-		switch(configuration)
-		{
-			case 0: 
-			InvokeRepeating("BallMoverBinary", 0,  0.0125f);
-			break;
-			case 1:
-			InvokeRepeating("BallMoverRange", 0,  0.0125f);
-			break;
-			default:
-			InvokeRepeating("BallMoverBinary", 0,  0.0125f);
-			break;
-
-		}
+        //every 20th of a second
+        SetConfiguration(this.configuration);
 
 	}
-	
+	private void SetConfiguration(int configuration)
+    {
+        switch (configuration)
+        {
+            case 0:
+                InvokeRepeating("BallMoverBinary", 0, 0.0125f);
+                break;
+            case 1:
+                InvokeRepeating("BallMoverRange", 0, 0.0125f);
+                break;
+            case 2:
+                InvokeRepeating("BallMoverKeyboard", 0, 0.0125f);
+                break;
+            default:
+                InvokeRepeating("BallMoverBinary", 0, 0.0125f);
+                break;
+
+        }
+    }
 	public void BallMoverBinary() 
 	{
 	
@@ -51,10 +57,45 @@ public class GameController : MonoBehaviour {
 
 	public void BallMoverRange()
 	{
+        
 		//Debug.Log("Head tilt value: " + myGazeGetter.gazeDataObject);
 		movementHorizontal = myGazeGetter.GetHeadTiltValue();
 		ballController.MoveBasedOnHeadRange(movementHorizontal);
 	}
 
+    public void BallMoverKeyboard()
+    {
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            movementHorizontal = -1;
+            ballController.MoveBasedOnKeyboard(movementHorizontal);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            movementHorizontal = 1;
+            ballController.MoveBasedOnKeyboard(movementHorizontal);
+        }
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            ballController.StopBall();
+        }
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            if (this.configuration == 0 || this.configuration == 1)
+            {
+                this.configuration++;
+            }
+            else
+            {
+                this.configuration = 0;
+            }
+            this.SetConfiguration(configuration);
+            Debug.Log("Configuration Changed to CONFIG: " + this.configuration );
+        }
+    }
 
 }
