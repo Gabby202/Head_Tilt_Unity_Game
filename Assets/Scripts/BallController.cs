@@ -24,7 +24,7 @@ public class BallController : MonoBehaviour {
 		// uses direct translation of head tilt, and * by 1000 to move rb
 		if(h > 0.05f || h < -0.05f) {
 			playerMovement  = new Vector3(-h, 0.0f, 0.0f) * speed * Time.deltaTime;
-            //Teleport(h);
+            Teleport(h);
         } else {
 			playerMovement = new Vector3(0f,0f,0f) * speed * Time.deltaTime;
 		}
