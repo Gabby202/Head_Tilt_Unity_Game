@@ -6,14 +6,13 @@ public class CalibrationSquare : MonoBehaviour{
 
     float currCountdownValue;
     private CalibrationController calibrationController;
-    private AccuracyCalculator accuracyCalculator;
     private float lifespan = 0f;
     void Start()
     {
         calibrationController = FindObjectOfType<CalibrationController>();
         lifespan = 3f;
-        accuracyCalculator = new AccuracyCalculator(lifespan, calibrationController.timer);
-
+        calibrationController.lifespan = this.lifespan;
+        //Debug.Log(new AccuracyCalculator(3, 30, 14).Accuracy());
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -43,11 +42,15 @@ public class CalibrationSquare : MonoBehaviour{
         {
             //Debug.Log("Countdown: " + currCountdownValue);
             yield return new WaitForSeconds(1.0f);
+
+
             currCountdownValue--;
+            calibrationController.timeInSquare += 1f;
+            Debug.Log("time in square: " + calibrationController.timeInSquare);
             calibrationController.slider.value += 1 / lifespan;
             //Debug.Log(calibrationController.slider.value);
-            calibrationController.accuracy += accuracyCalculator.Accuracy();
-            Debug.Log(calibrationController.accuracy);
+            
+
             if (currCountdownValue <= 0)
             {
                 Destroy(gameObject);

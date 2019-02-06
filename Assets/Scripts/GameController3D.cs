@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController3D : MonoBehaviour {
 
 	private Gaze myGazeGetter;
-	private BallController ballController;
+	private BallController3D ballController;
 	private float movementHorizontal;
-
 	public int configuration = 2;
-	public GameObject prefab;
+	//public GameObject prefab;
 	// Use this for initialization
 	void Start () {
 		myGazeGetter = FindObjectOfType<Gaze>();
-		ballController = FindObjectOfType<BallController>();
+		ballController = FindObjectOfType<BallController3D>();
         //every 20th of a second
         SetConfiguration(this.configuration);
 
@@ -66,20 +65,20 @@ public class GameController : MonoBehaviour {
 
     public void BallMoverKeyboard()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKey(KeyCode.A))
         {
             movementHorizontal = -1;
             ballController.MoveBasedOnKeyboard(movementHorizontal);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             movementHorizontal = 1;
             ballController.MoveBasedOnKeyboard(movementHorizontal);
         }
-        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {
-            ballController.StopBall();
-        }
+        //else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        //{
+        //    ballController.StopBall();
+        //}
     }
 
     void Update()
