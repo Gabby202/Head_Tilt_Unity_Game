@@ -13,7 +13,7 @@ public class ButtonController : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		SceneManager.LoadScene("FallingBlocks");
+		SceneManager.LoadScene("InfiniteRunner3D");
 	}
 	
 }

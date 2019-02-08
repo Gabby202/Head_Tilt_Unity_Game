@@ -473,8 +473,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &965280762
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +548,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
->>>>>>> accuracy
 --- !u!1 &976295960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,12 +1156,7 @@ MonoBehaviour:
   square: {fileID: 1010858661335948, guid: 5ca633fa5ad356247b75bb4b55006561, type: 2}
   rect: {fileID: 1044146204054352, guid: 8947e06aa51dedb48af22238f7750e4b, type: 2}
   timerText: {fileID: 1186012054}
-<<<<<<< HEAD
-  timer: 30
-  accuracy: 0
-=======
   totalTime: 30
->>>>>>> accuracy
   squareActive: 0
   calibrationFinished: 0
   slider: {fileID: 1013311678}
